@@ -15,7 +15,9 @@ const Sidebar = () => {
   const sidebarStyle = {
     width: 'var(--sidebar-width)',
     height: '100vh',
-    backgroundColor: 'var(--bg-secondary)',
+    backgroundColor: 'rgba(11, 15, 25, 0.6)',
+    backdropFilter: 'blur(16px)',
+    WebkitBackdropFilter: 'blur(16px)',
     borderRight: '1px solid var(--border-color)',
     position: 'fixed',
     top: 0,
@@ -87,21 +89,22 @@ const Sidebar = () => {
                 alignItems: 'center',
                 gap: '12px',
                 padding: '12px 16px',
-                borderRadius: '8px',
+                borderRadius: '12px',
                 color: isActive ? '#ffffff' : 'var(--text-secondary)',
-                backgroundColor: isActive ? 'var(--bg-tertiary)' : 'transparent',
+                background: isActive ? 'linear-gradient(90deg, rgba(99,102,241,0.15) 0%, transparent 100%)' : 'transparent',
+                borderLeft: isActive ? '3px solid var(--accent-primary)' : '3px solid transparent',
                 transition: 'all 0.2s ease',
                 fontWeight: isActive ? '500' : '400',
               })}
               onMouseEnter={(e) => {
-                if(e.currentTarget.style.backgroundColor === 'transparent') {
-                  e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.03)';
+                if(e.currentTarget.style.background === 'transparent') {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
                   e.currentTarget.style.color = 'var(--text-primary)';
                 }
               }}
               onMouseLeave={(e) => {
-                if(e.currentTarget.style.backgroundColor === 'rgba(255, 255, 255, 0.03)') {
-                  e.currentTarget.style.backgroundColor = 'transparent';
+                if(e.currentTarget.style.background === 'rgba(255, 255, 255, 0.03)') {
+                  e.currentTarget.style.background = 'transparent';
                   e.currentTarget.style.color = 'var(--text-secondary)';
                 }
               }}

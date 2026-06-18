@@ -16,9 +16,11 @@ const DashboardLayout = () => {
         <Header />
         <main style={{ 
           flex: 1, 
-          padding: '24px', 
+          padding: '32px 24px', 
           overflowX: 'hidden',
-          backgroundColor: 'var(--bg-primary)'
+          backgroundColor: 'transparent',
+          position: 'relative',
+          zIndex: 1
         }}>
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
             <Outlet />

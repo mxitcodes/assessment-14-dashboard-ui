@@ -8,8 +8,9 @@ const Header = () => {
   return (
     <header style={{
       height: 'var(--header-height)',
-      backgroundColor: 'rgba(15, 23, 42, 0.8)',
-      backdropFilter: 'blur(12px)',
+      backgroundColor: 'rgba(11, 15, 25, 0.6)',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
       borderBottom: '1px solid var(--border-color)',
       position: 'sticky',
       top: 0,
@@ -31,12 +32,23 @@ const Header = () => {
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          backgroundColor: 'var(--bg-secondary)',
-          borderRadius: '8px',
-          padding: '8px 12px',
+          backgroundColor: 'rgba(255, 255, 255, 0.03)',
+          borderRadius: '12px',
+          padding: '10px 16px',
           border: '1px solid var(--border-color)',
           width: '300px',
-        }} className="search-bar">
+          transition: 'all 0.3s ease',
+          boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.1)'
+        }} 
+        className="search-bar"
+        onFocusCapture={(e) => {
+          e.currentTarget.style.borderColor = 'var(--accent-primary)';
+          e.currentTarget.style.boxShadow = 'var(--glow-shadow)';
+        }}
+        onBlurCapture={(e) => {
+          e.currentTarget.style.borderColor = 'var(--border-color)';
+          e.currentTarget.style.boxShadow = 'inset 0 2px 4px rgba(0,0,0,0.1)';
+        }}>
           <Search size={18} style={{ color: 'var(--text-muted)', marginRight: '8px' }} />
           <input 
             type="text" 
@@ -77,12 +89,13 @@ const Header = () => {
             width: '36px',
             height: '36px',
             borderRadius: '50%',
-            backgroundColor: 'var(--accent-primary)',
+            background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: 'white',
-            fontWeight: '600'
+            fontWeight: '600',
+            boxShadow: '0 4px 10px rgba(236, 72, 153, 0.3)'
           }}>
             <User size={18} />
           </div>

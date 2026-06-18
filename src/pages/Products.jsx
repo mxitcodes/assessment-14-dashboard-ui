@@ -11,32 +11,38 @@ const Products = () => {
   ];
 
   return (
-    <div>
+    <div className="animate-fade-in-up">
       <div style={{ marginBottom: '32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <h1 style={{ fontSize: '1.875rem', fontWeight: '700', marginBottom: '8px' }}>Products</h1>
+          <h1 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '8px', background: 'linear-gradient(to right, var(--text-primary), var(--text-muted))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Products</h1>
           <p style={{ color: 'var(--text-secondary)' }}>Manage your product inventory and listings.</p>
         </div>
         <button style={{
-          backgroundColor: 'var(--accent-primary)',
+          background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))',
           color: 'white',
-          padding: '10px 20px',
-          borderRadius: '8px',
-          fontWeight: '500',
-          transition: 'background-color 0.2s'
+          padding: '10px 24px',
+          borderRadius: '12px',
+          fontWeight: '600',
+          transition: 'all 0.3s ease',
+          boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)',
+          border: 'none',
         }}
-        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--accent-hover)'}
-        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--accent-primary)'}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-2px)';
+          e.currentTarget.style.boxShadow = '0 6px 16px rgba(99, 102, 241, 0.4)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(0)';
+          e.currentTarget.style.boxShadow = '0 4px 12px rgba(99, 102, 241, 0.3)';
+        }}
         >
           Add Product
         </button>
       </div>
 
-      <div style={{
-        backgroundColor: 'var(--bg-secondary)',
-        borderRadius: '12px',
-        border: '1px solid var(--border-color)',
-        overflow: 'hidden'
+      <div className="glass-panel" style={{
+        borderRadius: '16px',
+        overflow: 'hidden',
       }}>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
@@ -64,10 +70,12 @@ const Products = () => {
                       borderRadius: '999px',
                       fontSize: '0.75rem',
                       fontWeight: '600',
-                      backgroundColor: product.status === 'In Stock' ? 'rgba(16, 185, 129, 0.1)' : 
-                                      product.status === 'Low Stock' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(239, 68, 68, 0.1)',
-                      color: product.status === 'In Stock' ? '#10b981' : 
-                            product.status === 'Low Stock' ? '#f59e0b' : '#ef4444',
+                      backgroundColor: product.status === 'In Stock' ? 'rgba(16, 185, 129, 0.15)' : 
+                                      product.status === 'Low Stock' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                      color: product.status === 'In Stock' ? '#34d399' : 
+                            product.status === 'Low Stock' ? '#fbbf24' : '#f87171',
+                      border: `1px solid ${product.status === 'In Stock' ? 'rgba(16, 185, 129, 0.3)' : product.status === 'Low Stock' ? 'rgba(245, 158, 11, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`,
+                      boxShadow: `0 0 10px ${product.status === 'In Stock' ? 'rgba(16, 185, 129, 0.1)' : product.status === 'Low Stock' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(239, 68, 68, 0.1)'}`
                     }}>
                       {product.status}
                     </span>
