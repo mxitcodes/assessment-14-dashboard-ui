@@ -9,8 +9,8 @@ const fallbackUsers = [
   { id: 3, name: 'xyz patel', email: 'xyz.patel@email.com', role: 'Editor', status: 'Offline' },
   { id: 4, name: 'abc patel', email: 'abc.patel@email.com', role: 'User', status: 'Active' },
   { id: 5, name: 'cheff patel', email: 'cheff.patel@email.com', role: 'User', status: 'Banned' },
-  { id: 6, name: 'deff patel', email: 'deff.patel@email.com', role: 'Editor', status: 'Active' },
-  { id: 7, name: 'qvr patel', email: 'qvr.patel@email.com', role: 'User', status: 'Active' },
+  { id: 6, name: 'aarav sharma', email: 'aarav.sharma@email.com', role: 'Editor', status: 'Active' },
+  { id: 7, name: 'rohit verma', email: 'rohit.verma@email.com', role: 'User', status: 'Active' },
 ];
 
 const Users = () => {
@@ -34,16 +34,30 @@ const Users = () => {
         setLoading(true);
         setError(null);
         const res = await axios.get('https://jsonplaceholder.typicode.com/users');
-        const customNames = ['man patel', 'mrx patel', 'xyz patel', 'abc patel', 'cheff patel', 'deff patel', 'qvr patel', 'rst patel', 'uvw patel', 'lmn patel'];
+        const customProfiles = [
+          { name: 'man patel', email: 'man.patel@email.com' },
+          { name: 'mrx patel', email: 'mrx.patel@email.com' },
+          { name: 'xyz patel', email: 'xyz.patel@email.com' },
+          { name: 'abc patel', email: 'abc.patel@email.com' },
+          { name: 'cheff patel', email: 'cheff.patel@email.com' },
+          { name: 'aarav sharma', email: 'aarav.sharma@email.com' },
+          { name: 'rohit verma', email: 'rohit.verma@email.com' },
+          { name: 'priya gupta', email: 'priya.gupta@email.com' },
+          { name: 'amit kumar', email: 'amit.kumar@email.com' },
+          { name: 'sunita rao', email: 'sunita.rao@email.com' },
+        ];
         const roles = ['Admin', 'Editor', 'User', 'User', 'Editor'];
         const statuses = ['Active', 'Active', 'Offline', 'Active', 'Banned'];
-        const formatted = res.data.map((item, idx) => ({
-          id: item.id,
-          name: customNames[idx % customNames.length],
-          email: item.email.toLowerCase(),
-          role: roles[idx % roles.length],
-          status: statuses[idx % statuses.length],
-        }));
+        const formatted = res.data.map((item, idx) => {
+          const profile = customProfiles[idx % customProfiles.length];
+          return {
+            id: item.id,
+            name: profile.name,
+            email: profile.email,
+            role: roles[idx % roles.length],
+            status: statuses[idx % statuses.length],
+          };
+        });
         setUsers(formatted);
       } catch (err) {
         console.warn("JSONPlaceholder API failed, using premium fallback data", err);
