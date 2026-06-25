@@ -2,8 +2,11 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Header from './Header';
+import { useDashboardContext } from '../../context/DashboardContext';
 
 const DashboardLayout = () => {
+  const { sidebarCollapsed } = useDashboardContext();
+
   return (
     <div style={{ display: 'flex', minHeight: '100vh', width: '100%' }}>
       <Sidebar />
@@ -11,8 +14,8 @@ const DashboardLayout = () => {
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        transition: 'margin-left 0.3s ease-in-out',
-      }} className="main-content">
+        transition: 'margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+      }} className={`main-content ${sidebarCollapsed ? 'collapsed' : ''}`}>
         <Header />
         <main style={{ 
           flex: 1, 
@@ -33,6 +36,9 @@ const DashboardLayout = () => {
           .main-content {
             margin-left: var(--sidebar-width);
           }
+          .main-content.collapsed {
+            margin-left: var(--sidebar-collapsed-width);
+          }
         }
       `}</style>
     </div>
@@ -40,3 +46,4 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
+
